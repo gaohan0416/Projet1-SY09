@@ -36,7 +36,6 @@ abline(h=0);abline(v=0)
 
 
 #Classification hiérarchique ascendante
-
 #matrice de distances manhattan
 md.dist <- dist(recettes, method = "manhattan")
 md <- as.matrix(md.dist)
@@ -48,9 +47,8 @@ plot(arbre)
 #k = 3
 k3.means <- kmeans(recettes, centers = 3)
 plot(comp1, comp2, col=c("red","blue","green")[k3.means$cluster])
-
 #k = 5
 k5.means <- kmeans(recettes, centers = 5)
 plot(comp1, comp2, col=c("red","blue","green", "black", "orange")[k5.means$cluster])
 
-
+k10.means <- kmeans(recettes, centers = 10)
