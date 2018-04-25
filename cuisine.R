@@ -75,7 +75,11 @@ arbre2.ing <- hclust(dist.ing)
 #plot(arbre2.ing)
 
 #Algorithme des K-médoides
+k2.medoides <- pam(dist.ing, 2)
+clusplot(k2.medoides, main = "2-médoides sur les ingrédients", labels = 3, color = T, col.p="black")
+
 k3.medoides <- pam(dist.ing, 3)
-clusplot(k3.medoides, labels = T)
+clusplot(k3.medoides, main = "3-médoides sur les ingrédients", labels = 3, color = T, col.p="black")
 
-
+k5.medoides <- pam(dist.ing, 5)
+#clusplot(k5.medoides, main = "5-médoides sur les ingrédients", labels = 3, color = T, col.p="black")
