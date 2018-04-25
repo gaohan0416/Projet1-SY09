@@ -1,4 +1,6 @@
 #Projet 1
+library(cluster)
+library(philentropy)
 
 # 1 - Cuisine
 recettes <- read.csv("Projet1/donnees/recettes-pays.data", header=T, row.names=1)
@@ -52,3 +54,28 @@ k5.means <- kmeans(recettes, centers = 5)
 plot(comp1, comp2, col=c("red","blue","green", "black", "orange")[k5.means$cluster])
 
 k10.means <- kmeans(recettes, centers = 10)
+
+#deuxième jeu de données
+recipes <- read.csv("Projet1/donnees/recettes-echant.data", header=T)
+origin <- recipes[,1]
+recipes <- recipes[,-1]
+
+#matrice disimilarité sur les ingrédients
+ingredients <- t(recipes)
+colnames(ingredients) <- origin
+md.ing <- distance(ingredients, method = "jaccard")
+colnames(md.ing) <- rownames(ingredients)
+rownames(md.ing) <- rownames(ingredients)
+dist.ing <- as.dist(md.ing)
+#avec la méthode d'agrégation de ward
+arbre.ing <- hclust(dist.ing, method = "ward.D2")
+plot(arbre.ing)
+#avec la méthode d'agrégation complete
+arbre2.ing <- hclust(dist.ing)
+#plot(arbre2.ing)
+
+#Algorithme des K-médoides
+k3.medoides <- pam(dist.ing, 3)
+clusplot(k3.medoides, labels = T)
+
+
