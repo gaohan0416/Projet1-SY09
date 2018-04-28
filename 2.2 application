@@ -1,0 +1,13 @@
+X1 <- read.csv("Synth1.csv", header=T, row.names=1)
+z1 <- X[,3]
+X1 <- X[,-3]
+
+k2.means <- kmeans(X1,centers = 2)
+plot(k2.means$cluster)
+
+k3.means <- kmeans(X1,centers = 3)
+plot(k3.means$cluster)
+
+k5.means <- kmeans(X1,centers = 5)
+plot(k5.means$cluster)
+
