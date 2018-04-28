@@ -1,3 +1,5 @@
+
+#donnee synthetiques
 X1 <- read.csv("Synth1.csv", header=T, row.names=1)
 z1 <- X[,3]
 X1 <- X[,-3]
@@ -11,3 +13,10 @@ plot(k3.means$cluster)
 k5.means <- kmeans(X1,centers = 5)
 plot(k5.means$cluster)
 
+def.par <- par(no.readonly=T)
+par(mfrow=c(2,2))
+for ( i in 2:5)
+{
+plot(k2.means$cluster)
+}
+par(def.par)
