@@ -4,14 +4,14 @@ X1 <- read.csv("Synth1.csv", header=T, row.names=1)
 z1 <- X[,3]
 X1 <- X[,-3]
 
-k2.means <- kmeans(X1,centers = 2)
-plot(k2.means$cluster)
+k2 <- kmeans(X1,2)
+plot(X1, col=k2$cluster)
 
-k3.means <- kmeans(X1,centers = 3)
-plot(k3.means$cluster)
+k3 <- kmeans(X1,3)
+plot(X1, col=k3$cluster)
 
-k5.means <- kmeans(X1,centers = 5)
-plot(k5.means$cluster)
+k4 <- kmeans(X1,4)
+plot(X1, col=k4$cluster)
 
 def.par <- par(no.readonly=T)
 par(mfrow=c(2,2))
@@ -20,3 +20,45 @@ for ( i in 2:5)
 plot(k2.means$cluster)
 }
 par(def.par)
+
+#Iris
+
+data(iris)
+X <- iris[,1:4]
+z <- iris[,5]
+
+#k=2
+c1 <- kmeans(iris[,1:4],2)
+plot(iris[,1:4], col=c1$cluster)
+clusplot(iris[,1:4],c1$cluster, color = TRUE, shade = TRUE, labels = 2, main = "Clusplot Classification avec 2 classes")
+
+#k=3
+c2 <- kmeans(iris[,1:4],3)
+plot(iris[,1:4], col=c2$cluster)
+clusplot(iris[,1:4],c1$cluster, color = TRUE, shade = TRUE, labels = 2, main = "Clusplot Classification avec 3 classes")
+
+#k=4
+c3 <- kmeans(iris[,1:4],4)
+plot(iris[,1:4], col=c3$cluster)
+
+#k=5
+c4 <- kmeans(iris[,1:4],5)
+plot(iris[,1:4], col=c4$cluster)
+
+#k=2
+d2 <- dist(iris)
+r2 <- cmdscale(d2, k=2)
+h <- hclust(d2)
+plot(h)
+
+#k=3
+d3 <- dist(iris)
+r3 <- cmdscale(d3, k=3)
+h <- hclust(d3)
+plot(h)
+
+#spam
+
+spam <- read.csv("spam.csv",header = T, row.names=1)
+X <- spam[,-58]
+z <- spam[,58]
